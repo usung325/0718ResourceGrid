@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horizontally Scrolling YouTube Video Grid with Categories and Search</title>
-    <link href="./app.css" rel="stylesheet"/>
+    <title>Resources List</title>
+    <link rel="stylesheet" href="./app.css"/>
 </head>
 <body>
     <div class="inline">
         <div>
-            <h1>🔗 Resources List 🔗 </h1>
+            <h1>🔗 Resources List 🔗</h1>
         </div>
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search vid titles here:">
+            <input type="text" id="searchInput" placeholder="Search resources...">
         </div>
     </div>
-    <div class="grid-container" id="categoryContainer">
-        <!-- Categories will be dynamically inserted here -->
-    </div>
-    <script src="./index.js"></script>
+
+    <div id="categoryContainer" class="grid-container"></div>
+
+    <script src="/index.js"></script>
+    
 </body>
 </html>
