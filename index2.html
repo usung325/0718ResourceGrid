@@ -4,72 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Horizontally Scrolling YouTube Video Grid with Categories and Search</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
-        .search-container {
-            max-width: 1200px;
-            margin: 0 auto 20px;
-        }
-        #searchInput {
-            width: 60em;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .inline{
-            display: flex;
-            justify-content:space-between;
-            align-items:end;
-            max-width: 100%;
-            margin: 0 auto 20px;
-            margin-left: 10px;
-        }
-        
-        .grid-container {
-            display: flex;
-            overflow-x: auto;
-            gap: 20px;
-            padding-bottom: 20px;
-        }
-        
-        .category {
-            flex: 0 0 auto;
-            width: 300px;
-        }
-        .category-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        .video-item {
-            margin-bottom: 20px;
-        }
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        .video-title {
-            margin-top: 10px;
-            font-weight: bold;
-            text-align: center;
-        }
-    </style>
+    <link href="./app.css" rel="stylesheet"/>
 </head>
 <body>
     <div class="inline">
@@ -83,72 +18,6 @@
     <div class="grid-container" id="categoryContainer">
         <!-- Categories will be dynamically inserted here -->
     </div>
-
-    <script>
-        // List of YouTube videos with URLs, titles, and categories
-        const videos = [
-            { url: 'https://www.youtube.com/watch?v=DYav0hb9piY', title: 'SaaS Full Tech Stack breakdown', category: 'SaaS' },
-            { url: 'https://www.youtube.com/watch?v=jaDuld1W73A', title: 'SaaS Case Study 1', category: 'SaaS' },
-            { url: 'https://www.youtube.com/watch?v=QxHE4af5BQE', title: 'Web Scraping for LLMs', category: 'LLM' },
-            { url: 'https://www.youtube.com/watch?v=jmPE5c5R7eo', title: 'SaaS Case Study 2', category: 'SaaS' },
-            { url: 'https://www.youtube.com/watch?v=ffcTwHZRhSk', title: 'How to find strangers/Farza life', category: 'BuildSpace' },
-            { url: 'https://www.youtube.com/watch?v=u8sW-NhGfXw', title: '1M Crypto SaaS', category: 'SaaS' },
-            { url: 'https://www.youtube.com/watch?v=SaZttbQUjLI', title: 'Solopreneur Breakdown/How to start', category: 'Solopreneur' },
-            { url: 'https://www.youtube.com/watch?v=_xdTLNgc1Fc', title: 'sol rng dev', category: 'Roblox Dev' },
-            { url: 'https://www.youtube.com/watch?v=4GwUOxm3OSg', title: 'Building business online', category: 'Solopreneur' },
-            { url: 'https://www.youtube.com/watch?v=zToKI65doDk', title: '$200,000 in 15 months', category: 'Startup' },
-            { url: 'https://www.youtube.com/watch?v=yreUsrL_Vks', title: '$65,000 AI startup', category: 'Startup' },
-            { url: 'https://www.youtube.com/watch?v=rVI1buMGqZU', title: 'Object detection ml5.js p5.js', category: 'Code' },
-            // Add or remove videos as needed
-        ];
-
-        function getYouTubeEmbedUrl(url) {
-            const videoId = url.split('v=')[1];
-            return `https://www.youtube.com/embed/${videoId}`;
-        }
-
-        function createVideoElement(video) {
-            const embedUrl = getYouTubeEmbedUrl(video.url);
-            return `
-                <div class="video-item">
-                    <div class="video-container">
-                        <iframe src="${embedUrl}" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-title">${video.title}</div>
-                </div>
-            `;
-        }
-
-        function populateCategories(filteredVideos = videos) {
-            const container = document.getElementById('categoryContainer');
-            container.innerHTML = ''; // Clear existing content
-            const categories = [...new Set(filteredVideos.map(video => video.category))];
-
-            categories.forEach(category => {
-                const categoryVideos = filteredVideos.filter(video => video.category === category);
-                const categoryHTML = `
-                    <div class="category">
-                        <h2 class="category-title">${category}</h2>
-                        ${categoryVideos.map(createVideoElement).join('')}
-                    </div>
-                `;
-                container.innerHTML += categoryHTML;
-            });
-        }
-
-        function filterVideos() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const filteredVideos = videos.filter(video => 
-                video.title.toLowerCase().includes(searchTerm)
-            );
-            populateCategories(filteredVideos);
-        }
-
-        // Initialize the page
-        window.onload = () => {
-            populateCategories();
-            document.getElementById('searchInput').addEventListener('input', filterVideos);
-        };
-    </script>
+    <script src="./index.js"></script>
 </body>
 </html>
